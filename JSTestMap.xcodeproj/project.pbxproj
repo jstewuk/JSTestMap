@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38BDCAF319DB4D7C00DC5BA4 /* JSCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */; };
+		38BDCAF519DBB5E000DC5BA4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */; };
 		38DAD6ED19DB351C00059DB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EC19DB351C00059DB1 /* main.m */; };
 		38DAD6F019DB351C00059DB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EF19DB351C00059DB1 /* AppDelegate.m */; };
 		38DAD6F319DB351C00059DB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6F219DB351C00059DB1 /* ViewController.m */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCircleView.h; sourceTree = "<group>"; };
 		38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCircleView.m; sourceTree = "<group>"; };
+		38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		38DAD6E719DB351C00059DB1 /* JSTestMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSTestMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DAD6EB19DB351C00059DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DAD6EC19DB351C00059DB1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38BDCAF519DBB5E000DC5BA4 /* QuartzCore.framework in Frameworks */,
 				38DAD71119DB354D00059DB1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +72,7 @@
 		38DAD6DE19DB351C00059DB1 = {
 			isa = PBXGroup;
 			children = (
+				38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */,
 				38DAD6E919DB351C00059DB1 /* JSTestMap */,
 				38DAD71019DB354D00059DB1 /* MapKit.framework */,
 				38DAD70319DB351C00059DB1 /* JSTestMapTests */,

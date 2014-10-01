@@ -27,8 +27,9 @@
 
 @property (nonatomic, weak) id <JSCircleViewDelegate> delegate;
 @property (nonatomic, assign) CGPoint circleCenterPoint;
+@property (nonatomic, assign, getter=isCircleHidden) BOOL circleHidden;
 @property (nonatomic, assign) CGFloat radius;
 
 - (id)initWithFrame:(CGRect)frame radius:(CGFloat)radius;
-
+- (void)animateDashedLineToRadius:(CGFloat)radius;
 @end

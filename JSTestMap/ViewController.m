@@ -129,7 +129,7 @@
     if (self.scalingInProgress) {
         NSLog(@"Region did change, animated: %@", animated ? @"YES" : @"NO");
         self.circleView.radius = 103;
-        [self.view addSubview:self.circleView];
+        self.circleView.circleHidden = NO;
         [self.mapView removeOverlay:self.circle];
         self.circle = nil;
         self.scalingInProgress = NO;
@@ -146,12 +146,13 @@
         self.radiusDistance = [self distanceFromRadius:radius];
         NSLog(@"distance: %f", self.radiusDistance);
         [self addCircle];
-        [self.circleView removeFromSuperview];
+        self.circleView.circleHidden = YES;
         
         MKCoordinateRegion region = self.mapView.region;
         region.span.latitudeDelta *= 1.5;
         region.span.longitudeDelta *= 1.5;
         [self.mapView setRegion:region animated:YES];
+        [self.circleView animateDashedLineToRadius:103];
     }
  }
 
