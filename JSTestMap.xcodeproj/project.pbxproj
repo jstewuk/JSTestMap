@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38BDCAF319DB4D7C00DC5BA4 /* JSCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */; };
 		38DAD6ED19DB351C00059DB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EC19DB351C00059DB1 /* main.m */; };
 		38DAD6F019DB351C00059DB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EF19DB351C00059DB1 /* AppDelegate.m */; };
 		38DAD6F319DB351C00059DB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6F219DB351C00059DB1 /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		38DAD6F819DB351C00059DB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38DAD6F719DB351C00059DB1 /* Images.xcassets */; };
 		38DAD6FB19DB351C00059DB1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DAD6F919DB351C00059DB1 /* LaunchScreen.xib */; };
 		38DAD70719DB351C00059DB1 /* JSTestMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD70619DB351C00059DB1 /* JSTestMapTests.m */; };
+		38DAD71119DB354D00059DB1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DAD71019DB354D00059DB1 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCircleView.h; sourceTree = "<group>"; };
+		38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCircleView.m; sourceTree = "<group>"; };
 		38DAD6E719DB351C00059DB1 /* JSTestMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSTestMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DAD6EB19DB351C00059DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DAD6EC19DB351C00059DB1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +44,7 @@
 		38DAD70019DB351C00059DB1 /* JSTestMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSTestMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DAD70519DB351C00059DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DAD70619DB351C00059DB1 /* JSTestMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSTestMapTests.m; sourceTree = "<group>"; };
+		38DAD71019DB354D00059DB1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38DAD71119DB354D00059DB1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				38DAD6E919DB351C00059DB1 /* JSTestMap */,
+				38DAD71019DB354D00059DB1 /* MapKit.framework */,
 				38DAD70319DB351C00059DB1 /* JSTestMapTests */,
 				38DAD6E819DB351C00059DB1 /* Products */,
 			);
@@ -85,6 +92,8 @@
 				38DAD6EF19DB351C00059DB1 /* AppDelegate.m */,
 				38DAD6F119DB351C00059DB1 /* ViewController.h */,
 				38DAD6F219DB351C00059DB1 /* ViewController.m */,
+				38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */,
+				38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */,
 				38DAD6F419DB351C00059DB1 /* Main.storyboard */,
 				38DAD6F719DB351C00059DB1 /* Images.xcassets */,
 				38DAD6F919DB351C00059DB1 /* LaunchScreen.xib */,
@@ -222,6 +231,7 @@
 				38DAD6F319DB351C00059DB1 /* ViewController.m in Sources */,
 				38DAD6F019DB351C00059DB1 /* AppDelegate.m in Sources */,
 				38DAD6ED19DB351C00059DB1 /* main.m in Sources */,
+				38BDCAF319DB4D7C00DC5BA4 /* JSCircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +422,7 @@
 				38DAD70C19DB351C00059DB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38DAD70D19DB351C00059DB1 /* Build configuration list for PBXNativeTarget "JSTestMapTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +431,7 @@
 				38DAD70F19DB351C00059DB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
