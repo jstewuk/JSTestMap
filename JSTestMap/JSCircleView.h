@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+
+@protocol JSCircleViewDelegate
+
 /**
  Pass the new radius to the delegate to take whatever action is needed
  */
-@protocol JSCircleViewDelegate
-
 - (void)updateGeofenceRadiusWithRadius:(CGFloat)radius;
+
+/**
+ Pass the panning radius to the delegate
+ */
+- (void)radiusChanged:(CGFloat)newRadius;
 
 @end
 
@@ -27,9 +33,8 @@
 
 @property (nonatomic, weak) id <JSCircleViewDelegate> delegate;
 @property (nonatomic, assign) CGPoint circleCenterPoint;
-@property (nonatomic, assign, getter=isCircleHidden) BOOL circleHidden;
 @property (nonatomic, assign) CGFloat radius;
 
 - (id)initWithFrame:(CGRect)frame radius:(CGFloat)radius;
-- (void)animateDashedLineToRadius:(CGFloat)radius;
+
 @end

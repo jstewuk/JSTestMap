@@ -51,20 +51,10 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
         self.backgroundColor = [UIColor clearColor];
         _currentRadius = radius;
         _circleCenterPoint = self.center;
-        _circleHidden = NO;
         [self addCenterPoint];
         [self addDraggablePoint];
     }
     return self;
-}
-
-- (void)animateDashedLineToRadius:(CGFloat)radius {
-    CABasicAnimation *animation = [CABasicAnimation animation];
-    animation.keyPath = @"path";
-    animation.duration = 1.0;
-    animation.fromValue = [self circleLayerPath];
-    animation.toValue = [self circleLayerPathWithCenter:self.circleCenterPoint Radius:radius];
-    [self.dashLayer addAnimation:animation forKey:@"path"];
 }
 
 #pragma mark - Overrides
@@ -90,25 +80,7 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
     [self setNeedsLayout];
 }
 
-- (void)setCircleHidden:(BOOL)circleHidden {
-    if (circleHidden != _circleHidden) {
-        _circleHidden = circleHidden;
-        self.circleLayer.hidden = _circleHidden;
-        [self.circleLayer setNeedsDisplay];
-    }
-}
-
 #pragma mark -
-
-- (void)initializeShapeLayers {
-    if (CGPointEqualToPoint(self.circleCenterPoint,CGPointZero) ||
-        self.currentRadius == 0) {
-        return;
-    }
-    [self.layer addSublayer:[self circleLayer]];
-    [self.layer addSublayer:[self dashLayer]];
-    self.hasInitialized = YES;
-}
 
 - (void)layoutSubviews
 {
@@ -116,18 +88,6 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
     
     [self.centerPoint setCenter:self.circleCenterPoint];
     [self.point setCenter:CGPointMake(self.circleCenterPoint.x + self.currentRadius, self.circleCenterPoint.y)];
-    if (! self.hasInitialized) {
-        [self initializeShapeLayers];
-    } else {
-        [self updateLayers];
-    }
-}
-
-- (void)updateLayers {
-    self.circleLayer.path = [self circleLayerPath].CGPath;
-    self.dashLayer.path = [self dashLayerPath].CGPath;
-    [self.circleLayer setNeedsDisplay];
-    [self.dashLayer setNeedsDisplay];
 }
 
 - (void) resizeCircle:(UIPanGestureRecognizer*)panRecognizer
@@ -135,6 +95,7 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
     CGPoint translation = [panRecognizer translationInView:self];
     CGFloat unClampedRadius = self.currentRadius + translation.x;
     self.currentRadius = [self clampedRadius:unClampedRadius];
+    [self.delegate radiusChanged:self.currentRadius];
     
     if (self.currentRadius > kMinRadius) {
         [panRecognizer setTranslation:CGPointZero inView:self];
@@ -194,63 +155,6 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
     self.point = point;
 }
 
-- (UIBezierPath *)circleLayerPath {
-    return [self circleLayerPathWithCenter:self.circleCenterPoint
-                                    Radius:self.currentRadius];
-}
-
-- (UIBezierPath *)circleLayerPathWithCenter:(CGPoint)center Radius:(CGFloat)radius {
-    CGRect circleRect = CGRectMake(center.x - radius,
-                                   center.y - radius,
-                                   radius * 2,
-                                   radius * 2);
-    return [UIBezierPath bezierPathWithOvalInRect:circleRect];
-}
-
-- (CAShapeLayer *)circleLayer {
-    if (_circleLayer == nil) {
-        CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = self.bounds;
-        layer.strokeColor = [UIColor blueColor].CGColor;
-        
-        CGFloat effectiveScaleFactor = [self contentScaleFactor];
-        
-        CGFloat lineWidth = 2 * (1.0 / effectiveScaleFactor);
-        
-        layer.lineWidth = lineWidth;
-        layer.path = [self circleLayerPath].CGPath;
-        layer.fillColor = [UIColor clearColor].CGColor;
-        layer.zPosition = -1.0;
-        _circleLayer = layer;
-    }
-    return _circleLayer;
-}
-
-- (UIBezierPath *)dashLayerPath {
-    UIBezierPath *line = [UIBezierPath bezierPath];
-    [line moveToPoint:CGPointMake(self.circleCenterPoint.x, self.circleCenterPoint.y)];
-    [line addLineToPoint:CGPointMake(self.point.center.x, self.point.center.y)];
-    return line;
-}
-
-- (CAShapeLayer *)dashLayer {
-    if (_dashLayer == nil) {
-        CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = self.bounds;
-        layer.strokeColor = [UIColor blackColor].CGColor;
-        
-        CGFloat effectiveScaleFactor = [self contentScaleFactor];
-        
-        CGFloat lineWidth = 2 * (1.0 / effectiveScaleFactor);
-        
-        layer.lineWidth = lineWidth;
-        layer.lineDashPattern = @[@2,@2,@2,@2];
-        layer.path = [self dashLayerPath].CGPath;
-        layer.zPosition = -1.0;
-        _dashLayer = layer;
-    }
-    return _dashLayer;
-}
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {

@@ -18,6 +18,10 @@
 		38DAD6FB19DB351C00059DB1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DAD6F919DB351C00059DB1 /* LaunchScreen.xib */; };
 		38DAD70719DB351C00059DB1 /* JSTestMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD70619DB351C00059DB1 /* JSTestMapTests.m */; };
 		38DAD71119DB354D00059DB1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DAD71019DB354D00059DB1 /* MapKit.framework */; };
+		38E27F1F19E159F500E5AC0A /* JSCustomOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E27F1E19E159F500E5AC0A /* JSCustomOverlayRenderer.m */; };
+		38E27F2219E15CF900E5AC0A /* JSCustomOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E27F2119E15CF900E5AC0A /* JSCustomOverlay.m */; };
+		38E27F2519E1C90000E5AC0A /* JSCirclePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E27F2419E1C90000E5AC0A /* JSCirclePath.m */; };
+		38E27F2819E1D20100E5AC0A /* JSCircleOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E27F2719E1D20100E5AC0A /* JSCircleOverlayRenderer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,14 @@
 		38DAD70519DB351C00059DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DAD70619DB351C00059DB1 /* JSTestMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSTestMapTests.m; sourceTree = "<group>"; };
 		38DAD71019DB354D00059DB1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		38E27F1D19E159F500E5AC0A /* JSCustomOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCustomOverlayRenderer.h; sourceTree = "<group>"; };
+		38E27F1E19E159F500E5AC0A /* JSCustomOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCustomOverlayRenderer.m; sourceTree = "<group>"; };
+		38E27F2019E15CF900E5AC0A /* JSCustomOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCustomOverlay.h; sourceTree = "<group>"; };
+		38E27F2119E15CF900E5AC0A /* JSCustomOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCustomOverlay.m; sourceTree = "<group>"; };
+		38E27F2319E1C90000E5AC0A /* JSCirclePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCirclePath.h; path = ../JSCirclePath.h; sourceTree = "<group>"; };
+		38E27F2419E1C90000E5AC0A /* JSCirclePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSCirclePath.m; path = ../JSCirclePath.m; sourceTree = "<group>"; };
+		38E27F2619E1D20100E5AC0A /* JSCircleOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSCircleOverlayRenderer.h; path = ../JSCircleOverlayRenderer.h; sourceTree = "<group>"; };
+		38E27F2719E1D20100E5AC0A /* JSCircleOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSCircleOverlayRenderer.m; path = ../JSCircleOverlayRenderer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +108,18 @@
 		38DAD6E919DB351C00059DB1 /* JSTestMap */ = {
 			isa = PBXGroup;
 			children = (
+				38E27F2619E1D20100E5AC0A /* JSCircleOverlayRenderer.h */,
+				38E27F2719E1D20100E5AC0A /* JSCircleOverlayRenderer.m */,
+				38E27F2319E1C90000E5AC0A /* JSCirclePath.h */,
+				38E27F2419E1C90000E5AC0A /* JSCirclePath.m */,
 				38DAD6EE19DB351C00059DB1 /* AppDelegate.h */,
 				38DAD6EF19DB351C00059DB1 /* AppDelegate.m */,
 				38DAD6F119DB351C00059DB1 /* ViewController.h */,
 				38DAD6F219DB351C00059DB1 /* ViewController.m */,
+				38E27F2019E15CF900E5AC0A /* JSCustomOverlay.h */,
+				38E27F2119E15CF900E5AC0A /* JSCustomOverlay.m */,
+				38E27F1D19E159F500E5AC0A /* JSCustomOverlayRenderer.h */,
+				38E27F1E19E159F500E5AC0A /* JSCustomOverlayRenderer.m */,
 				38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */,
 				38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */,
 				38DAD6F419DB351C00059DB1 /* Main.storyboard */,
@@ -238,8 +258,12 @@
 			files = (
 				38DAD6F319DB351C00059DB1 /* ViewController.m in Sources */,
 				38DAD6F019DB351C00059DB1 /* AppDelegate.m in Sources */,
+				38E27F2219E15CF900E5AC0A /* JSCustomOverlay.m in Sources */,
+				38E27F1F19E159F500E5AC0A /* JSCustomOverlayRenderer.m in Sources */,
+				38E27F2819E1D20100E5AC0A /* JSCircleOverlayRenderer.m in Sources */,
 				38DAD6ED19DB351C00059DB1 /* main.m in Sources */,
 				38BDCAF319DB4D7C00DC5BA4 /* JSCircleView.m in Sources */,
+				38E27F2519E1C90000E5AC0A /* JSCirclePath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
