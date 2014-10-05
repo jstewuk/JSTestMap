@@ -59,9 +59,12 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
 }
 
 - (void)animateDashedLineToRadius:(CGFloat)radius {
-    [UIView animateWithDuration:1.0 animations:^{
-        self.currentRadius = radius;
-    }];
+    CABasicAnimation *animation = [CABasicAnimation animation];
+    animation.keyPath = @"path";
+    animation.duration = 1.0;
+    animation.fromValue = [self circleLayerPath];
+    animation.toValue = [self circleLayerPathWithCenter:self.circleCenterPoint Radius:radius];
+    [self.dashLayer addAnimation:animation forKey:@"path"];
 }
 
 #pragma mark - Overrides
@@ -90,7 +93,7 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
 - (void)setCircleHidden:(BOOL)circleHidden {
     if (circleHidden != _circleHidden) {
         _circleHidden = circleHidden;
-        self.circleLayer.strokeColor = _circleHidden ? [UIColor clearColor].CGColor : [UIColor blueColor].CGColor;
+        self.circleLayer.hidden = _circleHidden;
         [self.circleLayer setNeedsDisplay];
     }
 }
@@ -192,12 +195,15 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
 }
 
 - (UIBezierPath *)circleLayerPath {
-    CGRect circleRect = CGRectMake(self.circleCenterPoint.x - self.currentRadius,
-                                   self.circleCenterPoint.y - self.currentRadius,
-                                   self.currentRadius * 2,
-                                   self.currentRadius * 2);
-    
-    
+    return [self circleLayerPathWithCenter:self.circleCenterPoint
+                                    Radius:self.currentRadius];
+}
+
+- (UIBezierPath *)circleLayerPathWithCenter:(CGPoint)center Radius:(CGFloat)radius {
+    CGRect circleRect = CGRectMake(center.x - radius,
+                                   center.y - radius,
+                                   radius * 2,
+                                   radius * 2);
     return [UIBezierPath bezierPathWithOvalInRect:circleRect];
 }
 
@@ -214,6 +220,7 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
         layer.lineWidth = lineWidth;
         layer.path = [self circleLayerPath].CGPath;
         layer.fillColor = [UIColor clearColor].CGColor;
+        layer.zPosition = -1.0;
         _circleLayer = layer;
     }
     return _circleLayer;
@@ -239,6 +246,7 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
         layer.lineWidth = lineWidth;
         layer.lineDashPattern = @[@2,@2,@2,@2];
         layer.path = [self dashLayerPath].CGPath;
+        layer.zPosition = -1.0;
         _dashLayer = layer;
     }
     return _dashLayer;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		383D4BC519DC896600631018 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383D4BC419DC896600631018 /* CoreLocation.framework */; };
 		38BDCAF319DB4D7C00DC5BA4 /* JSCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */; };
 		38BDCAF519DBB5E000DC5BA4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */; };
 		38DAD6ED19DB351C00059DB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EC19DB351C00059DB1 /* main.m */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		383D4BC419DC896600631018 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCircleView.h; sourceTree = "<group>"; };
 		38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCircleView.m; sourceTree = "<group>"; };
 		38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				383D4BC519DC896600631018 /* CoreLocation.framework in Frameworks */,
 				38BDCAF519DBB5E000DC5BA4 /* QuartzCore.framework in Frameworks */,
 				38DAD71119DB354D00059DB1 /* MapKit.framework in Frameworks */,
 			);
@@ -72,9 +75,10 @@
 		38DAD6DE19DB351C00059DB1 = {
 			isa = PBXGroup;
 			children = (
-				38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */,
+				383D4BC419DC896600631018 /* CoreLocation.framework */,
 				38DAD6E919DB351C00059DB1 /* JSTestMap */,
 				38DAD71019DB354D00059DB1 /* MapKit.framework */,
+				38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */,
 				38DAD70319DB351C00059DB1 /* JSTestMapTests */,
 				38DAD6E819DB351C00059DB1 /* Products */,
 			);
@@ -358,6 +362,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSTestMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -368,6 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JSTestMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
