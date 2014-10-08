@@ -25,6 +25,8 @@
           inContext:(CGContextRef)context
 {
     JSCirclePath *circle = (JSCirclePath *)self.overlay;
+    
+
     [circle lockForReading];
     
     //calculate CG values from circle coordinate and radius...
@@ -35,12 +37,17 @@
     
     CGPoint centerPoint = [self pointForMapPoint:MKMapPointForCoordinate(circle.coordinate)];
     
+    CGContextSaveGState(context);
     CGContextSetFillColorWithColor(context, [[UIColor blueColor] colorWithAlphaComponent:0.2].CGColor);
-    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(context, 2.0);
-    CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, 0, 2 * M_PI, true);
-    CGContextDrawPath(context, kCGPathFillStroke);
-//    CGContextStrokePath(context);
+    CGRect rect = CGRectMake(centerPoint.x - radius,
+                             centerPoint.y - radius,
+                             2 * radius,
+                             2 * radius);
+    CGContextStrokeEllipseInRect(context, rect);
+    CGContextFillEllipseInRect(context, rect);
+    CGContextRestoreGState(context);
 }
 
 - (BOOL)canDrawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale {
