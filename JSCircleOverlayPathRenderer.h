@@ -1,13 +1,13 @@
 //
-//  JSCircleOverlayRenderer.h
+//  JSCircleOverlayPathRenderer.h
 //  JSTestMap
 //
 //  Created by Jim on 10/5/14.
 //  Copyright (c) 2014 idev.com. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
+@import MapKit;
 
-@interface JSCircleOverlayRenderer : MKOverlayRenderer
+@interface JSCircleOverlayPathRenderer : MKOverlayPathRenderer
 
 @end

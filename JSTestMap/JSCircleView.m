@@ -159,7 +159,7 @@ const CGFloat kDefaultRadiusInMiles = 2.0;
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
     // Huge hit area is good
-    if (CGRectContainsPoint(CGRectInset(self.point.frame, -100 * VIEW_INSET, -100 * VIEW_INSET), point)) {
+    if (CGRectContainsPoint(CGRectInset(self.point.frame, -200 * VIEW_INSET, -200 * VIEW_INSET), point)) {
         return self.point;
     }
     return nil;

@@ -14,7 +14,7 @@
 #import "JSCircleView.h"
 
 #import "JSCirclePath.h"
-#import "JSCircleOverlayRenderer.h"
+#import "JSCircleOverlayPathRenderer.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -39,7 +39,7 @@
 @property (nonatomic, assign) CLLocationDistance circleOverlayRadius;
 
 @property (nonatomic, strong) JSCirclePath *jsCircleOverlay;
-@property (nonatomic, strong) JSCircleOverlayRenderer *circleRenderer;
+@property (nonatomic, strong) JSCircleOverlayPathRenderer *circleRenderer;
 
 @end
 
@@ -194,7 +194,7 @@
         renderer.lineWidth = 1.5;
         return renderer;
     } else if ([overlay isKindOfClass:[JSCirclePath class]]) {
-        self.circleRenderer = [[JSCircleOverlayRenderer alloc] initWithOverlay:overlay];
+        self.circleRenderer = [[JSCircleOverlayPathRenderer alloc] initWithOverlay:overlay];
         return self.circleRenderer;
     }
     return nil;
