@@ -18,6 +18,11 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+const CLLocationDistance kMinDistanceRadius = 500; // meters
+const CLLocationDistance kMaxDistanceRadius = 1500 * 1609.34; // 1500 miles
+const CLLocationDistance kDefaultDistanceRadius = 2 * 1609.34; //2 miles
+
+
 @interface ViewController () <MKMapViewDelegate, CLLocationManagerDelegate, JSCircleViewDelegate>
 
 @property (nonatomic, strong) MKMapView *mapView;
@@ -114,7 +119,7 @@
 
 - (JSCircleView *)circleView {
     if (_circleView == nil) {
-        _circleView = [[JSCircleView alloc] initWithFrame:self.view.frame radius:100];
+        _circleView = [[JSCircleView alloc] initWithFrame:self.view.frame radius:110];
         _circleView.delegate = self;
     }
     return _circleView;
@@ -129,7 +134,7 @@
 
 - (JSCirclePath *)jsCircleOverlay {
     if (_jsCircleOverlay == nil) {
-        _jsCircleOverlay = [[JSCirclePath alloc] initWithCenterCoordinate:self.region.center radius:5000];
+        _jsCircleOverlay = [[JSCirclePath alloc] initWithCenterCoordinate:self.region.center radius:110];
     }
     return _jsCircleOverlay;
 }
@@ -204,6 +209,7 @@
     if (self.scalingInProgress) {
         NSLog(@"Region did change, animated: %@", animated ? @"YES" : @"NO");
         self.circle = nil;
+        self.circleView.radius = [self radiusFromCircleOverlay];
         self.scalingInProgress = NO;
     }
 }
@@ -232,11 +238,19 @@
 
 - (void)scaleMapWithFactor:(CGFloat)factor radius:(CGFloat)radius {
     self.scalingInProgress = YES;
-    
     MKCoordinateRegion region = self.mapView.region;
     region.span.latitudeDelta *= factor;
     region.span.longitudeDelta *= factor;
+    region = [self.mapView regionThatFits:region];
+    region = [self regionClampedToLimits:region];
     [self.mapView setRegion:region animated:YES];
+}
+
+- (MKCoordinateRegion)regionClampedToLimits:(MKCoordinateRegion)region {
+    // convert span to distance (radians to distance)
+    // compare to min and max regions
+    // reset or pass through
+    return region;
 }
 
 - (void)updateGeofenceSettingsWithRadius:(CGFloat)radius {
