@@ -16,6 +16,8 @@
 #import "JSCirclePath.h"
 #import "JSCircleOverlayRenderer.h"
 
+#import "MKMapView+Radius.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 const CLLocationDistance kMinDistanceRadius = 500; // meters
@@ -172,6 +174,7 @@ const CLLocationDegrees  kMetersPerDegreeLatitude = 111319.0;
 }
 
 #pragma mark - Map stuff
+//TODO: Move this out of view controller
 
 - (CLLocationDistance)distanceFromRadius:(CGFloat)radius {
     CGPoint dragPoint = CGPointMake(self.circleView.circleCenterPoint.x + radius,
@@ -192,7 +195,6 @@ const CLLocationDegrees  kMetersPerDegreeLatitude = 111319.0;
 - (CGPoint)circleViewCenterPointForRegion:(MKCoordinateRegion)region {
     return [self.mapView convertCoordinate:region.center toPointToView:self.circleView];
 }
-
 
 #pragma mark - MKMapViewDelegate compliance
 
@@ -221,7 +223,9 @@ const CLLocationDegrees  kMetersPerDegreeLatitude = 111319.0;
     }
 }
 
+//TODO: Move this to our mapviewController class
 #pragma mark - JSCircleViewDelegate compliance
+
 - (void)radiusChanged:(CGFloat)newRadius {
     CLLocationDistance distance = [self distanceFromRadius:newRadius];
 //    self.customOverlay.radius = distance;
@@ -245,38 +249,15 @@ const CLLocationDegrees  kMetersPerDegreeLatitude = 111319.0;
 
 - (void)scaleMapWithFactor:(CGFloat)factor radius:(CGFloat)radius {
     self.scalingInProgress = YES;
-    MKCoordinateRegion region = self.mapView.region;
-    region.span.latitudeDelta *= factor;
-    region.span.longitudeDelta *= factor;
-    region = [self regionClampedToLimits:region];
-    region = [self.mapView regionThatFits:region];
-    region.center = self.location.coordinate;
-    [self.mapView setRegion:region animated:YES];
+    [self.mapView scaleMapWithFactor:factor radius:radius];
+//    MKCoordinateRegion region = self.mapView.region;
+//    region.span.latitudeDelta *= factor;
+//    region.span.longitudeDelta *= factor;
+//    region = [self regionClampedToLimits:region];
+//    region = [self.mapView regionThatFits:region];
+//    region.center = self.location.coordinate;
+//    [self.mapView setRegion:region animated:YES];
     [self.circleView setCircleCenterPoint:[self circleViewCenterPointForRegion:self.mapView.region]];
-}
-
-- (MKCoordinateRegion)regionClampedToLimits:(MKCoordinateRegion)region {
-    if (region.span.latitudeDelta < [self minimumSpan].latitudeDelta) {
-        return MKCoordinateRegionMake(self.mapView.region.center, [self minimumSpan]);
-    } else if (region.span.latitudeDelta > [self maximumSpan].latitudeDelta) {
-        return MKCoordinateRegionMake(self.mapView.region.center, [self maximumSpan]);
-    } else {
-        return region;
-    }
-}
-
-- (MKCoordinateSpan)minimumSpan {
-    CLLocationCoordinate2D centerCoordinate = self.mapView.region.center;
-    CLLocationDegrees lattitudeDelta = kMinDistanceRadius * 1.5 * 2 / kMetersPerDegreeLatitude;
-    CLLocationDegrees longitudeDelta = lattitudeDelta * cos(centerCoordinate.latitude * M_PI/180.);
-    return  MKCoordinateSpanMake(lattitudeDelta, longitudeDelta);
-}
-
-- (MKCoordinateSpan)maximumSpan {
-    CLLocationCoordinate2D centerCoordinate = self.mapView.region.center;
-    CLLocationDegrees lattitudeDelta = kMaxDistanceRadius * 1.5 * 2 / kMetersPerDegreeLatitude;
-    CLLocationDegrees longitudeDelta = lattitudeDelta * cos(centerCoordinate.latitude * M_PI/180.);
-    return MKCoordinateSpanMake(lattitudeDelta, longitudeDelta);
 }
 
 - (void)updateGeofenceSettingsWithRadius:(CGFloat)radius {

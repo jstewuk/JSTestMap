@@ -14,4 +14,6 @@
 
 - (CGPoint)viewPointForRegionCenter:(CLLocationCoordinate2D)regionCenter;
 
+- (void)scaleMapWithFactor:(CGFloat)factor radius:(CGFloat)radius;
+
 @end
