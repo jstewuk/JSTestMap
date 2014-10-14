@@ -10,6 +10,7 @@
 		383D4BC519DC896600631018 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383D4BC419DC896600631018 /* CoreLocation.framework */; };
 		38BDCAF319DB4D7C00DC5BA4 /* JSCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */; };
 		38BDCAF519DBB5E000DC5BA4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */; };
+		38C3838C19ED707B00CF1B84 /* MKMapView+Radius.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C3838B19ED707B00CF1B84 /* MKMapView+Radius.m */; };
 		38DAD6ED19DB351C00059DB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EC19DB351C00059DB1 /* main.m */; };
 		38DAD6F019DB351C00059DB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6EF19DB351C00059DB1 /* AppDelegate.m */; };
 		38DAD6F319DB351C00059DB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DAD6F219DB351C00059DB1 /* ViewController.m */; };
@@ -39,6 +40,8 @@
 		38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSCircleView.h; sourceTree = "<group>"; };
 		38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSCircleView.m; sourceTree = "<group>"; };
 		38BDCAF419DBB5E000DC5BA4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		38C3838A19ED707B00CF1B84 /* MKMapView+Radius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+Radius.h"; sourceTree = "<group>"; };
+		38C3838B19ED707B00CF1B84 /* MKMapView+Radius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+Radius.m"; sourceTree = "<group>"; };
 		38DAD6E719DB351C00059DB1 /* JSTestMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSTestMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DAD6EB19DB351C00059DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DAD6EC19DB351C00059DB1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				38E27F1E19E159F500E5AC0A /* JSCustomOverlayRenderer.m */,
 				38BDCAF119DB4D7C00DC5BA4 /* JSCircleView.h */,
 				38BDCAF219DB4D7C00DC5BA4 /* JSCircleView.m */,
+				38C3838A19ED707B00CF1B84 /* MKMapView+Radius.h */,
+				38C3838B19ED707B00CF1B84 /* MKMapView+Radius.m */,
 				38DAD6F419DB351C00059DB1 /* Main.storyboard */,
 				38DAD6F719DB351C00059DB1 /* Images.xcassets */,
 				38DAD6F919DB351C00059DB1 /* LaunchScreen.xib */,
@@ -258,6 +263,7 @@
 			files = (
 				38DAD6F319DB351C00059DB1 /* ViewController.m in Sources */,
 				38DAD6F019DB351C00059DB1 /* AppDelegate.m in Sources */,
+				38C3838C19ED707B00CF1B84 /* MKMapView+Radius.m in Sources */,
 				38E27F2219E15CF900E5AC0A /* JSCustomOverlay.m in Sources */,
 				38E27F1F19E159F500E5AC0A /* JSCustomOverlayRenderer.m in Sources */,
 				38E27F2819E1D20100E5AC0A /* JSCircleOverlayRenderer.m in Sources */,
