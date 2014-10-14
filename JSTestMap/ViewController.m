@@ -22,6 +22,8 @@ const CLLocationDistance kMinDistanceRadius = 500; // meters
 const CLLocationDistance kMaxDistanceRadius = 1500 * 1609.34; // 1500 miles
 const CLLocationDistance kDefaultDistanceRadius = 2 * 1609.34; //2 miles
 
+const CLLocationDegrees  kMetersPerDegreeLatitude = 111319.0;
+
 
 @interface ViewController () <MKMapViewDelegate, CLLocationManagerDelegate, JSCircleViewDelegate>
 
@@ -95,8 +97,9 @@ const CLLocationDistance kDefaultDistanceRadius = 2 * 1609.34; //2 miles
 
 - (MKCoordinateRegion)region {
     if (_region.center.latitude == 0.0) {
-        CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:30.25 longitude:-97.75];
+        CLLocation *testLocation = [[CLLocation alloc] initWithLatitude:30.246113403441214 longitude:-97.75];
         CLLocation *location = testLocation;
+        self.location = location;
 //        CLLocation *location = self.location;
         _region.center.latitude = location.coordinate.latitude;
         _region.center.longitude = location.coordinate.longitude;
@@ -186,6 +189,10 @@ const CLLocationDistance kDefaultDistanceRadius = 2 * 1609.34; //2 miles
     return dragPoint.x - centerPoint.x;
 }
 
+- (CGPoint)circleViewCenterPointForRegion:(MKCoordinateRegion)region {
+    return [self.mapView convertCoordinate:region.center toPointToView:self.circleView];
+}
+
 
 #pragma mark - MKMapViewDelegate compliance
 
@@ -241,16 +248,35 @@ const CLLocationDistance kDefaultDistanceRadius = 2 * 1609.34; //2 miles
     MKCoordinateRegion region = self.mapView.region;
     region.span.latitudeDelta *= factor;
     region.span.longitudeDelta *= factor;
-    region = [self.mapView regionThatFits:region];
     region = [self regionClampedToLimits:region];
+    region = [self.mapView regionThatFits:region];
+    region.center = self.location.coordinate;
     [self.mapView setRegion:region animated:YES];
+    [self.circleView setCircleCenterPoint:[self circleViewCenterPointForRegion:self.mapView.region]];
 }
 
 - (MKCoordinateRegion)regionClampedToLimits:(MKCoordinateRegion)region {
-    // convert span to distance (radians to distance)
-    // compare to min and max regions
-    // reset or pass through
-    return region;
+    if (region.span.latitudeDelta < [self minimumSpan].latitudeDelta) {
+        return MKCoordinateRegionMake(self.mapView.region.center, [self minimumSpan]);
+    } else if (region.span.latitudeDelta > [self maximumSpan].latitudeDelta) {
+        return MKCoordinateRegionMake(self.mapView.region.center, [self maximumSpan]);
+    } else {
+        return region;
+    }
+}
+
+- (MKCoordinateSpan)minimumSpan {
+    CLLocationCoordinate2D centerCoordinate = self.mapView.region.center;
+    CLLocationDegrees lattitudeDelta = kMinDistanceRadius * 1.5 * 2 / kMetersPerDegreeLatitude;
+    CLLocationDegrees longitudeDelta = lattitudeDelta * cos(centerCoordinate.latitude * M_PI/180.);
+    return  MKCoordinateSpanMake(lattitudeDelta, longitudeDelta);
+}
+
+- (MKCoordinateSpan)maximumSpan {
+    CLLocationCoordinate2D centerCoordinate = self.mapView.region.center;
+    CLLocationDegrees lattitudeDelta = kMaxDistanceRadius * 1.5 * 2 / kMetersPerDegreeLatitude;
+    CLLocationDegrees longitudeDelta = lattitudeDelta * cos(centerCoordinate.latitude * M_PI/180.);
+    return MKCoordinateSpanMake(lattitudeDelta, longitudeDelta);
 }
 
 - (void)updateGeofenceSettingsWithRadius:(CGFloat)radius {
